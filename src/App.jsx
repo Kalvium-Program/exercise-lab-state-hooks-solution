@@ -1,0 +1,49 @@
+import { useEffect, useState } from 'react';
+import './App.css';
+import Data from "./components/Data"
+import Image from "./components/Image"
+
+function App() {
+  let localDate = new Date()
+  localDate = localDate.toLocaleTimeString()
+
+  const [currDate, setDate] = useState(localDate);
+  const [displayNewText, setDisplay] = useState(true);
+  const [newText, setText] = useState("New Text Added")
+
+  useEffect(()=>{
+    setText(displayNewText?"New Text Added":null)
+  }
+    ,[displayNewText])
+
+  console.log(displayNewText)
+
+  return (
+    <div>
+    <header>
+      <img src="https://s3.ap-south-1.amazonaws.com/kalvi-education.github.io/front-end-web-development/Kalvium-Logo.png" alt=""></img>
+      <h3>{currDate}</h3>
+
+      <h2>{newText}</h2>
+      <button onClick={()=>{setDisplay(false)}}>Remove New Text</button>
+      <button onClick={()=>{setDisplay(true)}}>Add New Text</button>
+
+      <h3>Kalvium Education</h3>
+      
+    </header>
+    <div>
+      <p>It is a long established fact that a reader will be distracted by the readable content of a 
+        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less 
+        normal distribution of letters, as opposed to using 'Content here, content here', making it look 
+        like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum 
+        as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in 
+        their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on 
+        purpose (injected humour and the like).
+      </p>
+    </div>
+    <Image data={Data}></Image>
+  </div>
+  );
+}
+
+export default App;
